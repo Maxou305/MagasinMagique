@@ -34,12 +34,21 @@ class MagasinTest {
     }
 
     @Test
-    void productComteQualityShouldIncrementWhenSellInPassed(){
-        Item[] items = new Item[] { new Item("Comté", 10, 12) };
+    void comteQualityShouldIncrementWhenSellInPassed(){
+        Item[] items = new Item[] { new Item("Comté", -1, 12) };
         Magasin app = new Magasin(items);
         app.updateQuality();
-        Assertions.assertEquals(9, items[0].sellIn);
-        Assertions.assertEquals(13, items[0].quality);
+        Assertions.assertEquals(-2, items[0].sellIn);
+        Assertions.assertEquals(14, items[0].quality);
+    }
+
+    @Test
+    void comteQualityShouldNotIncrementWhenQualityOver50EvenIfSellinDecrement(){
+        Item[] items = new Item[] { new Item("Comté", -1, 50) };
+        Magasin app = new Magasin(items);
+        app.updateQuality();
+        Assertions.assertEquals(-2, items[0].sellIn);
+        Assertions.assertEquals(50, items[0].quality);
     }
 
     @Test
@@ -53,10 +62,10 @@ class MagasinTest {
 
     @Test
     void kryptonite(){
-        Item[] items = new Item[] { new Item("Kryptonite", 10, 80) };
+        Item[] items = new Item[] { new Item("Kryptonite", -1, 80) };
         Magasin app = new Magasin(items);
         app.updateQuality();
-        Assertions.assertEquals(10, items[0].sellIn);
+        Assertions.assertEquals(-1, items[0].sellIn);
         Assertions.assertEquals(80, items[0].quality);
     }
 
@@ -67,6 +76,24 @@ class MagasinTest {
         app.updateQuality();
         Assertions.assertEquals(9, items[0].sellIn);
         Assertions.assertEquals(12, items[0].quality);
+    }
+
+    @Test
+    void vipTicketQualityShouldIncrementBy1WhenQualityOver50(){
+        Item[] items = new Item[] { new Item("Pass VIP Concert", 5, 49) };
+        Magasin app = new Magasin(items);
+        app.updateQuality();
+        Assertions.assertEquals(4, items[0].sellIn);
+        Assertions.assertEquals(50, items[0].quality);
+    }
+
+    @Test
+    void vipTicketQualityShouldIncrementBy1WhenSellinOver10(){
+        Item[] items = new Item[] { new Item("Pass VIP Concert", 12, 10) };
+        Magasin app = new Magasin(items);
+        app.updateQuality();
+        Assertions.assertEquals(11, items[0].sellIn);
+        Assertions.assertEquals(11, items[0].quality);
     }
 
     @Test

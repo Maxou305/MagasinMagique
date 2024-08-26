@@ -113,4 +113,21 @@ class MagasinTest {
         Assertions.assertEquals(-1, items[0].sellIn);
         Assertions.assertEquals(0, items[0].quality);
     }
+
+    @Test
+    void pouvoirMagiquesQualityDecrement2TimesFasterWhenSellinOver0(){
+        Item[] items = new Item[] { new Item("Pouvoirs magiques", 15, 20) };
+        Magasin app = new Magasin(items);
+        app.updateQuality();
+        Assertions.assertEquals(14, items[0].sellIn);
+        Assertions.assertEquals(18, items[0].quality);
+    }
+    @Test
+    void pouvoirMagiquesQualityDecrement2TimesFasterWhenSellinUnder0(){
+        Item[] items = new Item[] { new Item("Pouvoirs magiques", -1, 20) };
+        Magasin app = new Magasin(items);
+        app.updateQuality();
+        Assertions.assertEquals(-2, items[0].sellIn);
+        Assertions.assertEquals(16, items[0].quality);
+    }
 }

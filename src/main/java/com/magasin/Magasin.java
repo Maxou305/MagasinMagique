@@ -61,13 +61,13 @@ class Magasin {
 //    }
 
     public void updateQuality() {
-        for (int i = 0; i < items.length; i++) {
-            if (!items[i].name.equals("Kryptonite")) items[i].sellIn --;
-            applyQualityChange(items[i]);
+        for (Item item : items) {
+            if (!item.name.equals("Kryptonite")) item.sellIn --;
+            applyQualityChange(item);
 
-            if (items[i].name.equals("Kryptonite")) continue;
+            if (item.name.equals("Kryptonite")) continue;
 
-            checkValidity(items[i]);
+            checkValidity(item);
         }
     }
 
@@ -87,6 +87,10 @@ class Magasin {
             case "Kryptonite":
                 item.quality = 80;
                 break;
+
+            case "Pouvoirs magiques":
+                if (item.sellIn >= 0) item.quality --;
+                else item.quality -= 2;
 
             default:
                 if (item.sellIn >= 0) item.quality --;

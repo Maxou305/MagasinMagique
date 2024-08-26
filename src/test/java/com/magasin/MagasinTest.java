@@ -53,11 +53,11 @@ class MagasinTest {
 
     @Test
     void kryptonite(){
-        Item[] items = new Item[] { new Item("Kryptonite", 10, 50) };
+        Item[] items = new Item[] { new Item("Kryptonite", 10, 80) };
         Magasin app = new Magasin(items);
         app.updateQuality();
         Assertions.assertEquals(10, items[0].sellIn);
-        Assertions.assertEquals(50, items[0].quality);
+        Assertions.assertEquals(80, items[0].quality);
     }
 
     @Test

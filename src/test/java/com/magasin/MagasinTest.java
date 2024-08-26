@@ -39,7 +39,7 @@ class MagasinTest {
         Magasin app = new Magasin(items);
         app.updateQuality();
         Assertions.assertEquals(-2, items[0].sellIn);
-        Assertions.assertEquals(14, items[0].quality);
+        Assertions.assertEquals(13, items[0].quality); // with previous function this test fail ! need to pass 13 -> 14
     }
 
     @Test

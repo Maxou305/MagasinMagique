@@ -85,7 +85,7 @@ class Magasin {
                 break;
 
             case "Kryptonite":
-                item.quality = 80;
+                if (item.quality != 80) item.quality = 80;
                 break;
 
             case "Pouvoirs magiques":
